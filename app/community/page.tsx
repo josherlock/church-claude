@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import {
   getFriends,
   addFriend,
+  addFriendByEmail,
   removeFriend,
   getProfile,
   saveProfile,
@@ -11,6 +12,7 @@ import {
   getTotalCompletions,
   isCompletedToday,
   Friend,
+  type UserProfile,
 } from "@/lib/store";
 
 // Avatar color palette (warm earth tones)
@@ -55,7 +57,10 @@ export default function CommunityPage() {
   const [streak, setStreak] = useState(0);
   const [totalCompletions, setTotalCompletions] = useState(0);
   const [completedToday, setCompletedToday] = useState(false);
+  const [newFriendEmail, setNewFriendEmail] = useState("");
+  const [addMode, setAddMode] = useState<"email" | "name">("email");
   const [newFriendName, setNewFriendName] = useState("");
+  const [profileEmail, setProfileEmail] = useState("");
   const [isEditingName, setIsEditingName] = useState(false);
   const [editNameValue, setEditNameValue] = useState("");
   const [confirmRemoveId, setConfirmRemoveId] = useState<string | null>(null);
@@ -65,12 +70,23 @@ export default function CommunityPage() {
     const profile = getProfile();
     setProfileName(profile.name || "You");
     setProfileId(profile.id);
+    setProfileEmail(profile.email || "");
     setStreak(getCurrentStreak());
     setTotalCompletions(getTotalCompletions());
     setCompletedToday(isCompletedToday());
     setFriends(getFriends());
     setMounted(true);
   }, []);
+
+  const handleAddFriendByEmail = () => {
+    const trimmed = newFriendEmail.trim();
+    if (!trimmed || !trimmed.includes("@")) return;
+    const newFriend = addFriendByEmail(trimmed);
+    setFriends((prev) => [...prev, newFriend]);
+    setNewFriendEmail("");
+    setJustAdded(true);
+    setTimeout(() => setJustAdded(false), 2000);
+  };
 
   const handleAddFriend = () => {
     const trimmed = newFriendName.trim();
@@ -245,7 +261,16 @@ export default function CommunityPage() {
                         </button>
                       </div>
                     )}
-                    <p className="text-xs text-mocha mt-0.5 font-sans">
+                    {profileEmail && (
+                      <p className="text-xs text-mocha mt-0.5 font-sans flex items-center gap-1">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                          <polyline points="22,6 12,13 2,6" />
+                        </svg>
+                        {profileEmail}
+                      </p>
+                    )}
+                    <p className="text-[10px] text-warmGray mt-0.5 font-sans">
                       ID: {profileId}
                     </p>
                   </div>
@@ -288,46 +313,130 @@ export default function CommunityPage() {
         {/* ========== Add Friend Section ========== */}
         <section className="fade-in-up fade-in-up-delay-2 mb-8">
           <h2 className="font-serif text-lg md:text-xl font-semibold text-espresso mb-4">
-            Add a Friend
+            Connect with Friends
           </h2>
           <div className="bg-parchment rounded-2xl border border-warmBorder p-5 md:p-6">
-            <p className="text-sm text-mocha mb-4 leading-relaxed">
-              Add friends by name to walk alongside them in your faith journey.
-              Encourage one another daily.
-            </p>
-            <div className="flex gap-3">
-              <input
-                type="text"
-                value={newFriendName}
-                onChange={(e) => setNewFriendName(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleAddFriend()}
-                placeholder="Enter friend's name..."
-                className="flex-1 bg-cream border border-warmBorder rounded-xl px-4 py-3 text-sm text-espresso placeholder:text-warmGray focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold transition-all font-sans"
-              />
+            {/* Toggle between email and name */}
+            <div className="flex gap-2 mb-4">
               <button
-                onClick={handleAddFriend}
-                disabled={!newFriendName.trim()}
-                className="inline-flex items-center gap-2 bg-espresso text-white px-5 py-3 rounded-xl text-sm font-medium hover:bg-espresso/90 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                onClick={() => setAddMode("email")}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                  addMode === "email"
+                    ? "bg-espresso text-white"
+                    : "bg-sand text-mocha hover:bg-warmGray/30"
+                }`}
               >
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <line x1="12" y1="5" x2="12" y2="19" />
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                </svg>
-                Add
+                <span className="flex items-center gap-2">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
+                  Gmail
+                </span>
+              </button>
+              <button
+                onClick={() => setAddMode("name")}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                  addMode === "name"
+                    ? "bg-espresso text-white"
+                    : "bg-sand text-mocha hover:bg-warmGray/30"
+                }`}
+              >
+                <span className="flex items-center gap-2">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                  Name
+                </span>
               </button>
             </div>
+
+            {addMode === "email" ? (
+              <>
+                <p className="text-sm text-mocha mb-4 leading-relaxed">
+                  Connect with friends using their Gmail address. Walk alongside them in faith and keep each other accountable.
+                </p>
+                <div className="flex gap-3">
+                  <div className="flex-1 relative">
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="absolute left-3.5 top-1/2 -translate-y-1/2 text-warmGray"
+                    >
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                      <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                    <input
+                      type="email"
+                      value={newFriendEmail}
+                      onChange={(e) => setNewFriendEmail(e.target.value)}
+                      onKeyDown={(e) => e.key === "Enter" && handleAddFriendByEmail()}
+                      placeholder="friend@gmail.com"
+                      className="w-full bg-cream border border-warmBorder rounded-xl pl-10 pr-4 py-3 text-sm text-espresso placeholder:text-warmGray focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold transition-all font-sans"
+                    />
+                  </div>
+                  <button
+                    onClick={handleAddFriendByEmail}
+                    disabled={!newFriendEmail.trim() || !newFriendEmail.includes("@")}
+                    className="inline-flex items-center gap-2 bg-espresso text-white px-5 py-3 rounded-xl text-sm font-medium hover:bg-espresso/90 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                    Connect
+                  </button>
+                </div>
+                {profileEmail && (
+                  <div className="mt-4 p-3 bg-cream/80 rounded-xl border border-warmBorder/50">
+                    <p className="text-xs text-mocha">
+                      <span className="font-medium text-espresso">Your email:</span>{" "}
+                      {profileEmail}
+                    </p>
+                    <p className="text-[11px] text-warmGray mt-1">
+                      Share this with friends so they can connect with you
+                    </p>
+                  </div>
+                )}
+              </>
+            ) : (
+              <>
+                <p className="text-sm text-mocha mb-4 leading-relaxed">
+                  Add a friend by name to track your faith journey together.
+                </p>
+                <div className="flex gap-3">
+                  <input
+                    type="text"
+                    value={newFriendName}
+                    onChange={(e) => setNewFriendName(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && handleAddFriend()}
+                    placeholder="Enter friend's name..."
+                    className="flex-1 bg-cream border border-warmBorder rounded-xl px-4 py-3 text-sm text-espresso placeholder:text-warmGray focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold transition-all font-sans"
+                  />
+                  <button
+                    onClick={handleAddFriend}
+                    disabled={!newFriendName.trim()}
+                    className="inline-flex items-center gap-2 bg-espresso text-white px-5 py-3 rounded-xl text-sm font-medium hover:bg-espresso/90 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                    Add
+                  </button>
+                </div>
+              </>
+            )}
             {justAdded && (
               <p className="text-xs text-taupe mt-3 font-medium fade-in-up">
-                Friend added successfully!
+                Friend connected successfully!
               </p>
             )}
           </div>

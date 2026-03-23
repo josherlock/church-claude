@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import Navigation from "@/components/Navigation";
+import AppShell from "@/components/AppShell";
 
 export const metadata: Metadata = {
   title: "Abide — Daily Devotion & Bible",
@@ -22,8 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-cream min-h-screen">
-        <Navigation />
-        <main className="pb-20 md:pb-0 md:pl-0">{children}</main>
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );

@@ -8,9 +8,18 @@ import {
   getTotalCompletions,
   getLast30DaysCompletions,
   getFriends,
+  getProfile,
   Friend,
+  STRUGGLE_LABELS,
+  type Struggle,
+  type UserProfile,
 } from "@/lib/store";
-import { getTodaysDevotion, getTodaysVerse } from "@/lib/devotions";
+import { getTodaysVerse } from "@/lib/devotions";
+import {
+  getPersonalizedTodayDevotion,
+  getPersonalizedGreeting,
+  getPersonalizedEncouragement,
+} from "@/lib/personalization";
 
 export default function HomePage() {
   const [streak, setStreak] = useState(0);
@@ -20,9 +29,12 @@ export default function HomePage() {
     { date: string; completed: boolean }[]
   >([]);
   const [friends, setFriends] = useState<Friend[]>([]);
+  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [greeting, setGreeting] = useState("");
+  const [encouragement, setEncouragement] = useState<{ text: string; ref: string }>({ text: "", ref: "" });
   const [mounted, setMounted] = useState(false);
 
-  const todaysDevotion = getTodaysDevotion();
+  const todaysDevotion = getPersonalizedTodayDevotion();
   const todaysVerse = getTodaysVerse();
 
   useEffect(() => {
@@ -31,6 +43,9 @@ export default function HomePage() {
     setTotalCompletions(getTotalCompletions());
     setLast30Days(getLast30DaysCompletions());
     setFriends(getFriends());
+    setProfile(getProfile());
+    setGreeting(getPersonalizedGreeting());
+    setEncouragement(getPersonalizedEncouragement());
     setMounted(true);
   }, []);
 
@@ -61,6 +76,12 @@ export default function HomePage() {
         <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full bg-white/5 translate-y-1/2 -translate-x-1/2" />
 
         <div className="relative z-10 max-w-4xl mx-auto px-5 py-14 md:py-20 text-center">
+          {/* Personalized Greeting */}
+          {greeting && (
+            <p className="text-white/70 text-sm font-sans font-medium mb-4">
+              {greeting}
+            </p>
+          )}
           <p className="text-gold/80 text-xs font-sans font-medium tracking-[0.2em] uppercase mb-6">
             Daily Verse
           </p>
@@ -122,6 +143,38 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* ========== Personalized Encouragement ========== */}
+        {profile && profile.struggles.length > 0 && encouragement.text && (
+          <section className="mt-6 fade-in-up fade-in-up-delay-1">
+            <div className="bg-parchment rounded-2xl p-5 md:p-6 border border-warmBorder">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-gold/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-lg">💛</span>
+                </div>
+                <div className="flex-1">
+                  <p className="text-xs font-medium text-taupe tracking-wide uppercase mb-2">
+                    A Word for Your Journey
+                  </p>
+                  <p className="text-sm text-espresso leading-relaxed font-serif italic">
+                    &ldquo;{encouragement.text}&rdquo;
+                  </p>
+                  <p className="text-xs text-taupe mt-1.5">{encouragement.ref}</p>
+                  <div className="flex flex-wrap gap-1.5 mt-3">
+                    {profile.struggles.map((s) => (
+                      <span
+                        key={s}
+                        className="text-[10px] font-medium text-mocha bg-sand/80 px-2.5 py-1 rounded-full"
+                      >
+                        {STRUGGLE_LABELS[s]}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* ========== Two-Column Layout (desktop) ========== */}
         <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">

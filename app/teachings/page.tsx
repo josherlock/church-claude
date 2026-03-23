@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { saveTeachingNote, getTeachingsNotes } from "@/lib/store";
+import { isRecommendedTeaching, getPersonalizedTeachingOrder } from "@/lib/personalization";
 
 // ---- Types ----
 
@@ -274,10 +275,20 @@ export default function TeachingsPage() {
     setNotes((prev) => ({ ...prev, [activeTeaching.id]: currentNote }));
   }, [activeTeaching, currentNote]);
 
-  const filteredTeachings =
+  const personalizedOrder = getPersonalizedTeachingOrder();
+
+  const filteredTeachings = (
     selectedTopic === "All"
       ? TEACHINGS
-      : TEACHINGS.filter((t) => t.topic === selectedTopic);
+      : TEACHINGS.filter((t) => t.topic === selectedTopic)
+  ).sort((a, b) => {
+    if (selectedTopic === "All") {
+      const aIdx = personalizedOrder.indexOf(a.id);
+      const bIdx = personalizedOrder.indexOf(b.id);
+      return aIdx - bIdx;
+    }
+    return 0;
+  });
 
   const getRelatedTeachings = (teaching: Teaching) =>
     TEACHINGS.filter(
@@ -370,9 +381,16 @@ export default function TeachingsPage() {
                 <div
                   className={`bg-gradient-to-br ${teaching.gradient} px-5 pt-5 pb-4`}
                 >
-                  <span className="inline-block px-3 py-1 rounded-full bg-white/70 backdrop-blur-sm text-xs font-sans font-semibold text-mocha uppercase tracking-wide">
-                    {teaching.topic}
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="inline-block px-3 py-1 rounded-full bg-white/70 backdrop-blur-sm text-xs font-sans font-semibold text-mocha uppercase tracking-wide">
+                      {teaching.topic}
+                    </span>
+                    {isRecommendedTeaching(teaching.id) && (
+                      <span className="inline-block px-2.5 py-1 rounded-full bg-gold/90 text-white text-[10px] font-sans font-bold uppercase tracking-wide">
+                        For You
+                      </span>
+                    )}
+                  </div>
                 </div>
 
                 {/* Card body */}

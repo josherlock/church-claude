@@ -1,7 +1,10 @@
+import type { Struggle } from "./store";
+
 export interface Devotion {
   id: number;
   title: string;
   theme: string;
+  struggles: Struggle[];
   verse: string;
   verseReference: string;
   reflection: string;
@@ -16,6 +19,7 @@ export const devotions: Devotion[] = [
     id: 1,
     title: "Rooted in Christ",
     theme: "Identity",
+    struggles: ["identity", "anxiety", "fear"],
     verse:
       "Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!",
     verseReference: "2 Corinthians 5:17",
@@ -33,6 +37,7 @@ export const devotions: Devotion[] = [
     id: 2,
     title: "The Discipline of Stillness",
     theme: "Prayer & Stillness",
+    struggles: ["anxiety", "discipline", "fear"],
     verse:
       "Be still, and know that I am God; I will be exalted among the nations, I will be exalted in the earth.",
     verseReference: "Psalm 46:10",
@@ -50,6 +55,7 @@ export const devotions: Devotion[] = [
     id: 3,
     title: "Walking by Faith",
     theme: "Faith",
+    struggles: ["fear", "purpose", "anxiety"],
     verse:
       "For we walk by faith, not by sight.",
     verseReference: "2 Corinthians 5:7",
@@ -67,6 +73,7 @@ export const devotions: Devotion[] = [
     id: 4,
     title: "Grace Upon Grace",
     theme: "Grace",
+    struggles: ["identity", "addiction", "anger"],
     verse:
       "But he said to me, 'My grace is sufficient for you, for my power is made perfect in weakness.' Therefore I will boast all the more gladly about my weaknesses, so that Christ's power may rest on me.",
     verseReference: "2 Corinthians 12:9",
@@ -84,6 +91,7 @@ export const devotions: Devotion[] = [
     id: 5,
     title: "The Heart of Worship",
     theme: "Worship",
+    struggles: ["purpose", "discipline", "identity"],
     verse:
       "Yet a time is coming and has now come when the true worshipers will worship the Father in the Spirit and in truth, for they are the kind of worshipers the Father seeks.",
     verseReference: "John 4:23",
@@ -101,6 +109,7 @@ export const devotions: Devotion[] = [
     id: 6,
     title: "Community & Accountability",
     theme: "Fellowship",
+    struggles: ["loneliness", "relationships", "addiction"],
     verse:
       "And let us consider how we may spur one another on toward love and good deeds, not giving up meeting together, as some are in the habit of doing, but encouraging one another.",
     verseReference: "Hebrews 10:24-25",
@@ -118,6 +127,7 @@ export const devotions: Devotion[] = [
     id: 7,
     title: "Eternal Perspective",
     theme: "Purpose",
+    struggles: ["purpose", "grief", "fear"],
     verse:
       "So we fix our eyes not on what is seen, but on what is unseen, since what is seen is temporary, but what is unseen is eternal.",
     verseReference: "2 Corinthians 4:18",

@@ -10,6 +10,7 @@ export interface DevotionCompletion {
 export interface Friend {
   id: string;
   name: string;
+  email: string;
   streak: number;
   completedToday: boolean;
   lastActive: string;
@@ -20,10 +21,40 @@ export interface JournalEntry {
   content: string;
 }
 
+export type Struggle =
+  | "anxiety"
+  | "fear"
+  | "loneliness"
+  | "anger"
+  | "addiction"
+  | "grief"
+  | "purpose"
+  | "relationships"
+  | "identity"
+  | "discipline";
+
+export const STRUGGLE_LABELS: Record<Struggle, string> = {
+  anxiety: "Anxiety & Worry",
+  fear: "Fear & Doubt",
+  loneliness: "Loneliness & Isolation",
+  anger: "Anger & Bitterness",
+  addiction: "Addiction & Temptation",
+  grief: "Grief & Loss",
+  purpose: "Purpose & Direction",
+  relationships: "Relationships",
+  identity: "Self-Worth & Identity",
+  discipline: "Spiritual Discipline",
+};
+
 export interface UserProfile {
   name: string;
+  email: string;
   id: string;
   createdAt: string;
+  onboarded: boolean;
+  struggles: Struggle[];
+  faithLevel: "new" | "growing" | "mature";
+  preferredTime: "morning" | "afternoon" | "evening";
 }
 
 // ---- Storage Keys ----
@@ -144,11 +175,12 @@ export function getFriends(): Friend[] {
   return getItem<Friend[]>(KEYS.FRIENDS, []);
 }
 
-export function addFriend(name: string): Friend {
+export function addFriend(name: string, email?: string): Friend {
   const friends = getFriends();
   const friend: Friend = {
     id: Math.random().toString(36).slice(2, 10),
     name,
+    email: email || "",
     streak: Math.floor(Math.random() * 20),
     completedToday: Math.random() > 0.4,
     lastActive: todayStr(),
@@ -156,6 +188,15 @@ export function addFriend(name: string): Friend {
   friends.push(friend);
   setItem(KEYS.FRIENDS, friends);
   return friend;
+}
+
+export function addFriendByEmail(email: string): Friend {
+  const name = email.split("@")[0].replace(/[._]/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  return addFriend(name, email);
+}
+
+export function getFriendByEmail(email: string): Friend | undefined {
+  return getFriends().find((f) => f.email.toLowerCase() === email.toLowerCase());
 }
 
 export function removeFriend(id: string): void {
@@ -191,14 +232,46 @@ export function getTodayJournal(): string {
 export function getProfile(): UserProfile {
   return getItem<UserProfile>(KEYS.PROFILE, {
     name: "",
+    email: "",
     id: Math.random().toString(36).slice(2, 10),
     createdAt: todayStr(),
+    onboarded: false,
+    struggles: [],
+    faithLevel: "growing",
+    preferredTime: "morning",
   });
+}
+
+export function isOnboarded(): boolean {
+  return getProfile().onboarded;
 }
 
 export function saveProfile(name: string): void {
   const profile = getProfile();
   profile.name = name;
+  setItem(KEYS.PROFILE, profile);
+}
+
+export function saveFullProfile(updates: Partial<UserProfile>): void {
+  const profile = getProfile();
+  Object.assign(profile, updates);
+  setItem(KEYS.PROFILE, profile);
+}
+
+export function completeOnboarding(data: {
+  name: string;
+  email: string;
+  struggles: Struggle[];
+  faithLevel: "new" | "growing" | "mature";
+  preferredTime: "morning" | "afternoon" | "evening";
+}): void {
+  const profile = getProfile();
+  profile.name = data.name;
+  profile.email = data.email;
+  profile.struggles = data.struggles;
+  profile.faithLevel = data.faithLevel;
+  profile.preferredTime = data.preferredTime;
+  profile.onboarded = true;
   setItem(KEYS.PROFILE, profile);
 }
 
