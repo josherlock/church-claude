@@ -516,22 +516,57 @@ export default function ProfilePage() {
           <div className="space-y-4">
             <div>
               <p className="text-xs font-medium text-mocha uppercase tracking-wide mb-2">Faith Journey</p>
-              <p className="text-sm text-espresso capitalize flex items-center gap-2">
-                {profile.faithLevel === "new" && "🌱"}
-                {profile.faithLevel === "growing" && "🌿"}
-                {profile.faithLevel === "mature" && "🌳"}
-                {profile.faithLevel === "new" ? "New to faith" : profile.faithLevel === "growing" ? "Growing in faith" : "Mature in faith"}
-              </p>
+              <div className="flex items-center gap-2">
+                {profile.faithLevel === "new" && (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-sage">
+                    <path d="M12 22V8"/>
+                    <path d="M5 12s2.5-5 7-5 7 5 7 5"/>
+                    <path d="M12 8c0-3-1.5-5-1.5-5s3.5 1 1.5 5"/>
+                  </svg>
+                )}
+                {profile.faithLevel === "growing" && (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-sage">
+                    <path d="M12 22V2"/>
+                    <path d="M4 14s3-6 8-6 8 6 8 6"/>
+                    <path d="M7 18s2-3 5-3 5 3 5 3"/>
+                  </svg>
+                )}
+                {profile.faithLevel === "mature" && (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-sage">
+                    <path d="M12 22V2"/>
+                    <path d="M3 16s3.5-8 9-8 9 8 9 8"/>
+                    <path d="M5 20s2.5-4 7-4 7 4 7 4"/>
+                    <path d="M7 12s2-4 5-4 5 4 5 4"/>
+                  </svg>
+                )}
+                <span className="text-sm text-espresso capitalize">
+                  {profile.faithLevel === "new" ? "New to faith" : profile.faithLevel === "growing" ? "Growing in faith" : "Mature in faith"}
+                </span>
+              </div>
             </div>
 
             <div>
               <p className="text-xs font-medium text-mocha uppercase tracking-wide mb-2">Preferred Devotion Time</p>
-              <p className="text-sm text-espresso capitalize flex items-center gap-2">
-                {profile.preferredTime === "morning" && "☀️"}
-                {profile.preferredTime === "afternoon" && "🌤️"}
-                {profile.preferredTime === "evening" && "🌙"}
-                {profile.preferredTime}
-              </p>
+              <div className="flex items-center gap-2">
+                {profile.preferredTime === "morning" && (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-gold">
+                    <circle cx="12" cy="12" r="4"/>
+                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+                  </svg>
+                )}
+                {profile.preferredTime === "afternoon" && (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-gold">
+                    <circle cx="12" cy="12" r="5"/>
+                    <path d="M12 3v2M12 19v2M5.64 5.64l1.41 1.41M16.95 16.95l1.41 1.41M3 12h2M19 12h2"/>
+                  </svg>
+                )}
+                {profile.preferredTime === "evening" && (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-gold">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                  </svg>
+                )}
+                <span className="text-sm text-espresso capitalize">{profile.preferredTime}</span>
+              </div>
             </div>
 
             {profile.struggles && profile.struggles.length > 0 && (

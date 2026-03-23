@@ -115,7 +115,9 @@ export default function DevotionPage() {
             </p>
             {streak > 0 && (
               <div className="inline-flex items-center gap-2 bg-gold/10 border border-gold/20 rounded-full px-5 py-2.5">
-                <span className="text-lg fire-glow">&#x1F525;</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-gold fire-glow">
+                  <path d="M12 2c.3 2.2.5 3.8 2 6 1.2 1.7 2 3.3 2 5.5a6 6 0 0 1-12 0c0-2.2.8-3.8 2-5.5C7.5 5.8 8 4 8.5 2c1 2 1.5 3 2 4 .5-.7 1-2 1.5-4z" fill="currentColor" opacity="0.85"/>
+                </svg>
                 <span className="text-sm font-medium text-espresso">
                   {streak} day streak
                 </span>
@@ -383,7 +385,9 @@ export default function DevotionPage() {
                 </p>
                 {streak > 0 && (
                   <div className="inline-flex items-center gap-2 bg-gold/10 border border-gold/20 rounded-full px-4 py-2">
-                    <span className="fire-glow">&#x1F525;</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-gold fire-glow">
+                      <path d="M12 2c.3 2.2.5 3.8 2 6 1.2 1.7 2 3.3 2 5.5a6 6 0 0 1-12 0c0-2.2.8-3.8 2-5.5C7.5 5.8 8 4 8.5 2c1 2 1.5 3 2 4 .5-.7 1-2 1.5-4z" fill="currentColor" opacity="0.85"/>
+                    </svg>
                     <span className="text-sm font-medium text-espresso">
                       {streak} day streak &mdash; keep going!
                     </span>

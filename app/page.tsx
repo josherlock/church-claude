@@ -101,8 +101,16 @@ export default function HomePage() {
           <div className="grid grid-cols-3 gap-3 md:gap-4">
             {/* Streak */}
             <div className="bg-parchment rounded-2xl p-4 md:p-5 shadow-sm border border-warmBorder text-center card-hover">
-              <div className="fire-glow text-2xl md:text-3xl mb-1">
-                {streak > 0 ? "🔥" : "✨"}
+              <div className="fire-glow mb-1 flex justify-center">
+                {streak > 0 ? (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-gold">
+                    <path d="M12 2c.3 2.2.5 3.8 2 6 1.2 1.7 2 3.3 2 5.5a6 6 0 0 1-12 0c0-2.2.8-3.8 2-5.5C7.5 5.8 8 4 8.5 2c1 2 1.5 3 2 4 .5-.7 1-2 1.5-4z" fill="currentColor" opacity="0.85"/>
+                  </svg>
+                ) : (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="text-warmGray">
+                    <path d="M12 3v2M12 19v2M5.64 5.64l1.41 1.41M16.95 16.95l1.41 1.41M3 12h2M19 12h2M5.64 18.36l1.41-1.41M16.95 7.05l1.41-1.41"/>
+                  </svg>
+                )}
               </div>
               <p className="text-2xl md:text-3xl font-serif font-bold text-espresso">
                 {streak}
@@ -114,7 +122,12 @@ export default function HomePage() {
 
             {/* Total */}
             <div className="bg-parchment rounded-2xl p-4 md:p-5 shadow-sm border border-warmBorder text-center card-hover">
-              <div className="text-2xl md:text-3xl mb-1">📖</div>
+              <div className="mb-1 flex justify-center">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="text-taupe">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                </svg>
+              </div>
               <p className="text-2xl md:text-3xl font-serif font-bold text-espresso">
                 {totalCompletions}
               </p>
@@ -131,8 +144,17 @@ export default function HomePage() {
                   : "bg-parchment border-warmBorder"
               }`}
             >
-              <div className="text-2xl md:text-3xl mb-1">
-                {completedToday ? "✅" : "⭕"}
+              <div className="mb-1 flex justify-center">
+                {completedToday ? (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-taupe">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.8" fill="currentColor" fillOpacity="0.1"/>
+                    <path d="M8 12.5l2.5 3 5.5-6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                ) : (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="text-warmGray">
+                    <circle cx="12" cy="12" r="10"/>
+                  </svg>
+                )}
               </div>
               <p className="text-2xl md:text-3xl font-serif font-bold text-espresso">
                 {completedToday ? "Done" : "Go"}
@@ -150,7 +172,10 @@ export default function HomePage() {
             <div className="bg-parchment rounded-2xl p-5 md:p-6 border border-warmBorder">
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-xl bg-gold/15 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-lg">💛</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-gold">
+                    <path d="M12 2L12 6M12 18L12 22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12L6 12M18 12L22 12M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+                    <circle cx="12" cy="12" r="4" fill="currentColor" opacity="0.2" stroke="currentColor" strokeWidth="1.8"/>
+                  </svg>
                 </div>
                 <div className="flex-1">
                   <p className="text-xs font-medium text-taupe tracking-wide uppercase mb-2">
@@ -454,7 +479,12 @@ export default function HomePage() {
                             {friend.name}
                           </p>
                           <p className="text-xs text-mocha">
-                            🔥 {friend.streak} day streak
+                            <span className="inline-flex items-center gap-1">
+                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" className="text-gold flex-shrink-0">
+                                <path d="M12 2c.3 2.2.5 3.8 2 6 1.2 1.7 2 3.3 2 5.5a6 6 0 0 1-12 0c0-2.2.8-3.8 2-5.5C7.5 5.8 8 4 8.5 2c1 2 1.5 3 2 4 .5-.7 1-2 1.5-4z" fill="currentColor" opacity="0.85"/>
+                              </svg>
+                              {friend.streak} day streak
+                            </span>
                           </p>
                         </div>
 

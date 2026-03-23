@@ -8,21 +8,73 @@ import { completeOnboarding, type Struggle, STRUGGLE_LABELS } from "@/lib/store"
 
 interface StruggleCard {
   key: Struggle;
-  icon: string;
+  icon: React.ReactNode;
   description: string;
 }
 
 const STRUGGLE_CARDS: StruggleCard[] = [
-  { key: "anxiety", icon: "🌊", description: "Racing thoughts, constant worry, restlessness" },
-  { key: "fear", icon: "🌑", description: "Uncertain about faith, afraid of the future" },
-  { key: "loneliness", icon: "🏝️", description: "Feeling disconnected, lacking community" },
-  { key: "anger", icon: "🔥", description: "Struggling to forgive, holding onto hurt" },
-  { key: "addiction", icon: "⛓️", description: "Battling habits, fighting temptation" },
-  { key: "grief", icon: "🕊️", description: "Processing pain, mourning what was lost" },
-  { key: "purpose", icon: "🧭", description: "Feeling lost, unsure of God's plan" },
-  { key: "relationships", icon: "💔", description: "Conflict, trust issues, broken connections" },
-  { key: "identity", icon: "🪞", description: "Not feeling enough, identity struggles" },
-  { key: "discipline", icon: "📖", description: "Inconsistent prayer, struggling to read the Bible" },
+  { key: "anxiety", icon: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-taupe">
+      <path d="M2 12C2 7 5 2 12 2s10 5 10 10-3 10-10 10S2 17 2 12z"/>
+      <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+      <path d="M9 9h.01M15 9h.01"/>
+    </svg>
+  ), description: "Racing thoughts, constant worry, restlessness" },
+  { key: "fear", icon: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-taupe">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+  ), description: "Uncertain about faith, afraid of the future" },
+  { key: "loneliness", icon: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-taupe">
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+      <circle cx="12" cy="7" r="4"/>
+    </svg>
+  ), description: "Feeling disconnected, lacking community" },
+  { key: "anger", icon: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-taupe">
+      <path d="M12 2c.3 2.2.5 3.8 2 6 1.2 1.7 2 3.3 2 5.5a6 6 0 0 1-12 0c0-2.2.8-3.8 2-5.5C7.5 5.8 8 4 8.5 2c1 2 1.5 3 2 4 .5-.7 1-2 1.5-4z" fill="currentColor" opacity="0.6" stroke="currentColor" strokeWidth="1"/>
+    </svg>
+  ), description: "Struggling to forgive, holding onto hurt" },
+  { key: "addiction", icon: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-taupe">
+      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+    </svg>
+  ), description: "Battling habits, fighting temptation" },
+  { key: "grief", icon: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-taupe">
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
+    </svg>
+  ), description: "Processing pain, mourning what was lost" },
+  { key: "purpose", icon: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-taupe">
+      <circle cx="12" cy="12" r="10"/>
+      <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+    </svg>
+  ), description: "Feeling lost, unsure of God's plan" },
+  { key: "relationships", icon: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-taupe">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+      <circle cx="9" cy="7" r="4"/>
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+    </svg>
+  ), description: "Conflict, trust issues, broken connections" },
+  { key: "identity", icon: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-taupe">
+      <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/>
+      <path d="M12 8v4M12 16h.01"/>
+    </svg>
+  ), description: "Not feeling enough, identity struggles" },
+  { key: "discipline", icon: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-taupe">
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+      <line x1="12" y1="6" x2="12" y2="13"/>
+      <line x1="8.5" y1="9.5" x2="15.5" y2="9.5"/>
+    </svg>
+  ), description: "Inconsistent prayer, struggling to read the Bible" },
 ];
 
 // ---- Component ----
@@ -238,9 +290,28 @@ export default function OnboardingPage() {
                 </label>
                 <div className="grid grid-cols-1 gap-3">
                   {([
-                    { value: "new" as const, label: "I'm new to faith", icon: "🌱" },
-                    { value: "growing" as const, label: "I'm growing in my faith", icon: "🌿" },
-                    { value: "mature" as const, label: "I'm mature in my faith", icon: "🌳" },
+                    { value: "new" as const, label: "I'm new to faith", icon: (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-sage">
+                        <path d="M12 22V8"/>
+                        <path d="M5 12s2.5-5 7-5 7 5 7 5"/>
+                        <path d="M12 8c0-3-1.5-5-1.5-5s3.5 1 1.5 5"/>
+                      </svg>
+                    ) },
+                    { value: "growing" as const, label: "I'm growing in my faith", icon: (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-sage">
+                        <path d="M12 22V2"/>
+                        <path d="M4 14s3-6 8-6 8 6 8 6"/>
+                        <path d="M7 18s2-3 5-3 5 3 5 3"/>
+                      </svg>
+                    ) },
+                    { value: "mature" as const, label: "I'm mature in my faith", icon: (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-sage">
+                        <path d="M12 22V2"/>
+                        <path d="M3 16s3.5-8 9-8 9 8 9 8"/>
+                        <path d="M5 20s2.5-4 7-4 7 4 7 4"/>
+                        <path d="M7 12s2-4 5-4 5 4 5 4"/>
+                      </svg>
+                    ) },
                   ]).map((opt) => (
                     <button
                       key={opt.value}
@@ -252,7 +323,7 @@ export default function OnboardingPage() {
                           : "border-warmBorder bg-white hover:border-warmGray hover:bg-sand/30"
                       }`}
                     >
-                      <span className="text-xl">{opt.icon}</span>
+                      {opt.icon}
                       <span className={`text-sm font-medium ${faithLevel === opt.value ? "text-espresso" : "text-mocha"}`}>
                         {opt.label}
                       </span>
@@ -378,7 +449,7 @@ export default function OnboardingPage() {
                           </svg>
                         </div>
                       )}
-                      <span className="text-2xl flex-shrink-0 mt-0.5">{card.icon}</span>
+                      <span className="flex-shrink-0 mt-0.5">{card.icon}</span>
                       <div className="flex-1 pr-6">
                         <h3 className={`font-semibold text-sm mb-1 ${isSelected ? "text-espresso" : "text-mocha"}`}>
                           {STRUGGLE_LABELS[card.key]}
