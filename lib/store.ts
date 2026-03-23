@@ -46,15 +46,26 @@ export const STRUGGLE_LABELS: Record<Struggle, string> = {
   discipline: "Spiritual Discipline",
 };
 
+export interface TelegramSettings {
+  username: string;
+  chatId: string;
+  connected: boolean;
+  dailyMessageEnabled: boolean;
+  dailyMessageTime: string; // HH:MM format
+}
+
 export interface UserProfile {
   name: string;
   email: string;
+  password: string;
+  avatarUrl: string; // base64 data URL
   id: string;
   createdAt: string;
   onboarded: boolean;
   struggles: Struggle[];
   faithLevel: "new" | "growing" | "mature";
   preferredTime: "morning" | "afternoon" | "evening";
+  telegram: TelegramSettings;
 }
 
 // ---- Storage Keys ----
@@ -233,12 +244,21 @@ export function getProfile(): UserProfile {
   return getItem<UserProfile>(KEYS.PROFILE, {
     name: "",
     email: "",
+    password: "",
+    avatarUrl: "",
     id: Math.random().toString(36).slice(2, 10),
     createdAt: todayStr(),
     onboarded: false,
     struggles: [],
     faithLevel: "growing",
     preferredTime: "morning",
+    telegram: {
+      username: "",
+      chatId: "",
+      connected: false,
+      dailyMessageEnabled: false,
+      dailyMessageTime: "07:00",
+    },
   });
 }
 

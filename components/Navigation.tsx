@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { getProfile } from "@/lib/store";
 
 const navItems = [
   {
@@ -63,6 +64,22 @@ const navItems = [
 export default function Navigation() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [avatarUrl, setAvatarUrl] = useState("");
+  const [initials, setInitials] = useState("?");
+
+  useEffect(() => {
+    const profile = getProfile();
+    setAvatarUrl(profile.avatarUrl || "");
+    const name = profile.name || "";
+    setInitials(
+      name
+        .split(" ")
+        .map((w: string) => w[0])
+        .join("")
+        .toUpperCase()
+        .slice(0, 2) || "?"
+    );
+  }, []);
 
   return (
     <>
@@ -95,6 +112,24 @@ export default function Navigation() {
                 </Link>
               );
             })}
+
+            {/* Profile Avatar */}
+            <Link
+              href="/profile"
+              className={`ml-2 w-8 h-8 rounded-full overflow-hidden border-2 transition-all duration-200 flex-shrink-0 ${
+                pathname === "/profile"
+                  ? "border-gold shadow-sm"
+                  : "border-warmBorder hover:border-taupe"
+              }`}
+            >
+              {avatarUrl ? (
+                <img src={avatarUrl} alt="Profile" className="w-full h-full object-cover" />
+              ) : (
+                <div className="w-full h-full bg-taupe/20 flex items-center justify-center">
+                  <span className="text-[10px] font-serif font-bold text-taupe">{initials}</span>
+                </div>
+              )}
+            </Link>
           </div>
         </div>
       </nav>
@@ -111,7 +146,7 @@ export default function Navigation() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl transition-all duration-200 min-w-[56px] ${
+                className={`flex flex-col items-center gap-1 px-2 py-1.5 rounded-xl transition-all duration-200 min-w-[48px] ${
                   isActive
                     ? "text-espresso"
                     : "text-warmGray hover:text-mocha"
@@ -127,6 +162,34 @@ export default function Navigation() {
               </Link>
             );
           })}
+
+          {/* Profile */}
+          <Link
+            href="/profile"
+            className={`flex flex-col items-center gap-1 px-2 py-1.5 rounded-xl transition-all duration-200 min-w-[48px] ${
+              pathname === "/profile"
+                ? "text-espresso"
+                : "text-warmGray hover:text-mocha"
+            }`}
+          >
+            <div className={`w-[22px] h-[22px] rounded-full overflow-hidden border-[1.5px] ${
+              pathname === "/profile" ? "border-taupe" : "border-current"
+            }`}>
+              {avatarUrl ? (
+                <img src={avatarUrl} alt="Profile" className="w-full h-full object-cover" />
+              ) : (
+                <div className="w-full h-full bg-taupe/20 flex items-center justify-center">
+                  <span className="text-[7px] font-serif font-bold text-taupe">{initials}</span>
+                </div>
+              )}
+            </div>
+            <span className={`text-[10px] font-medium ${pathname === "/profile" ? "text-espresso" : ""}`}>
+              Profile
+            </span>
+            {pathname === "/profile" && (
+              <span className="w-1 h-1 rounded-full bg-taupe -mt-0.5" />
+            )}
+          </Link>
         </div>
       </nav>
     </>
