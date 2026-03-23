@@ -48,7 +48,7 @@ const TEACHINGS: Teaching[] = [
     title: "The Power of Prayer",
     topic: "Prayer",
     summary:
-      "Discover how prayer transforms not just our circumstances, but our hearts. Pastor Johnny explores the mechanics of effective prayer and why God invites us into conversation with Him.",
+      "Discover how prayer transforms not just our circumstances, but our hearts. This teaching explores the mechanics of effective prayer and why God invites us into conversation with Him.",
     duration: "42 min",
     type: "video",
     scriptures: [
@@ -167,7 +167,7 @@ const TEACHINGS: Teaching[] = [
     title: "Overcoming Fear with Faith",
     topic: "Faith",
     summary:
-      "Fear is the thief of destiny. In this powerful teaching, Pastor Johnny reveals how faith dismantles fear and positions you for the breakthroughs God has prepared.",
+      "Fear is the thief of destiny. This powerful teaching reveals how faith dismantles fear and positions you for the breakthroughs God has prepared.",
     duration: "41 min",
     type: "video",
     scriptures: [
@@ -218,7 +218,7 @@ const TEACHINGS: Teaching[] = [
     title: "Forgiveness and Freedom",
     topic: "Grace",
     summary:
-      "Unforgiveness is a prison with invisible bars. Pastor Johnny unpacks the radical call to forgive as we have been forgiven, and the freedom that awaits on the other side.",
+      "Unforgiveness is a prison with invisible bars. This teaching unpacks the radical call to forgive as we have been forgiven, and the freedom that awaits on the other side.",
     duration: "37 min",
     type: "video",
     scriptures: [
@@ -331,7 +331,7 @@ export default function TeachingsPage() {
             Teachings
           </h1>
           <p className="text-gold/90 text-lg sm:text-xl font-sans">
-            Insights from Pastor Johnny Chang
+            Teachings from the Word
           </p>
           <p className="text-white/60 text-sm font-sans mt-2 max-w-xl">
             Explore sermon notes, video teachings, and scriptural insights to
@@ -521,7 +521,7 @@ export default function TeachingsPage() {
                           d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                         />
                       </svg>
-                      Pastor Johnny Chang
+                      Johnny Chang
                     </span>
                   </div>
                 </div>

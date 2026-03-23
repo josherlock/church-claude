@@ -161,11 +161,14 @@ export default function HeartCheckPage() {
             <div className="fade-in-up space-y-6">
               {/* Greeting */}
               <div className="flex gap-3">
-                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-taupe to-espresso flex items-center justify-center flex-shrink-0 mt-1">
-                  <span className="text-white text-xs font-serif font-bold">JC</span>
+                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-gold/80 to-taupe flex items-center justify-center flex-shrink-0 mt-1">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="text-white/90">
+  <rect x="10.5" y="3" width="3" height="18" rx="1" fill="currentColor"/>
+  <rect x="4" y="9" width="16" height="3" rx="1" fill="currentColor"/>
+</svg>
                 </div>
                 <div className="flex-1">
-                  <p className="text-xs text-taupe font-medium mb-1.5">Pastor Johnny&apos;s Corner</p>
+                  <p className="text-xs text-taupe font-medium mb-1.5">Pastoral Counsel</p>
                   <div className="bg-parchment rounded-2xl rounded-tl-sm border border-warmBorder p-5">
                     <p className="text-sm text-espresso leading-relaxed font-sans">
                       {greeting}
@@ -187,7 +190,7 @@ export default function HeartCheckPage() {
                   <div>
                     <p className="text-xs font-medium text-espresso mb-1">How this works</p>
                     <p className="text-xs text-mocha leading-relaxed">
-                      Share what you&apos;re struggling with. You&apos;ll receive counsel rooted in Scripture, wisdom in the style of Pastor Johnny Chang&apos;s teachings on heart posture, and a practical step to apply. This is not a replacement for pastoral care — it&apos;s a starting point for honest reflection.
+                      Share what you&apos;re struggling with. You&apos;ll receive counsel rooted in Scripture, wisdom centered on heart posture and God&apos;s Word, and a practical step to apply. This is not a replacement for pastoral care — it&apos;s a starting point for honest reflection.
                     </p>
                   </div>
                 </div>
@@ -231,12 +234,15 @@ export default function HeartCheckPage() {
               ) : message.response ? (
                 /* ---- Counsel Response ---- */
                 <div className="flex gap-3">
-                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-taupe to-espresso flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-white text-xs font-serif font-bold">JC</span>
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-gold/80 to-taupe flex items-center justify-center flex-shrink-0 mt-1">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="text-white/90">
+  <rect x="10.5" y="3" width="3" height="18" rx="1" fill="currentColor"/>
+  <rect x="4" y="9" width="16" height="3" rx="1" fill="currentColor"/>
+</svg>
                   </div>
                   <div className="flex-1 space-y-3 min-w-0">
                     <div className="flex items-center gap-2">
-                      <p className="text-xs text-taupe font-medium">Pastor Johnny&apos;s Corner</p>
+                      <p className="text-xs text-taupe font-medium">Pastoral Counsel</p>
                       <span className="text-[10px] text-mocha bg-sand px-2 py-0.5 rounded-full">
                         {message.response.category}
                       </span>
@@ -396,8 +402,11 @@ export default function HeartCheckPage() {
           {/* Typing Indicator */}
           {isTyping && (
             <div className="flex gap-3 fade-in">
-              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-taupe to-espresso flex items-center justify-center flex-shrink-0">
-                <span className="text-white text-xs font-serif font-bold">JC</span>
+              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-gold/80 to-taupe flex items-center justify-center flex-shrink-0">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="text-white/90">
+  <rect x="10.5" y="3" width="3" height="18" rx="1" fill="currentColor"/>
+  <rect x="4" y="9" width="16" height="3" rx="1" fill="currentColor"/>
+</svg>
               </div>
               <div className="bg-parchment rounded-2xl rounded-tl-sm border border-warmBorder px-5 py-4">
                 <div className="flex items-center gap-1.5">

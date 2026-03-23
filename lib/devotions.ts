@@ -26,7 +26,7 @@ export const devotions: Devotion[] = [
     reflection:
       "Our identity is not defined by our past mistakes, our achievements, or what others say about us. When we come to Christ, we become a completely new creation. The old patterns of thinking, the old shame, the old identity — all of it passes away. Today, walk in the confidence of who God says you are: beloved, chosen, redeemed.",
     changInsight:
-      "Pastor Johnny Chang teaches that true transformation begins when we stop trying to fix our old selves and instead embrace the entirely new identity God has given us. It's not about self-improvement — it's about Spirit-led renewal. We must daily remind ourselves of who we are in Christ.",
+      "True transformation begins when we stop trying to fix our old selves and instead embrace the entirely new identity God has given us. It's not about self-improvement — it's about Spirit-led renewal. We must daily remind ourselves of who we are in Christ.",
     changSource: "Identity in Christ Series",
     prayerPrompt:
       "Lord, help me to see myself the way You see me. Strip away the lies I've believed about myself and anchor my identity in Your truth. Let me walk today as the new creation You've made me to be.",
@@ -44,7 +44,7 @@ export const devotions: Devotion[] = [
     reflection:
       "In our hurried world of constant notifications and endless tasks, stillness feels almost rebellious. Yet God doesn't ask us to do more — He asks us to be still. In that stillness, we don't just rest; we encounter the living God. Stillness is not passive; it is the most active form of trust, declaring that God is in control even when our circumstances scream otherwise.",
     changInsight:
-      "Johnny Chang emphasizes that our prayer life should not just be a list of requests but a posture of listening. He teaches that the most powerful prayers often happen in silence — when we stop talking and let the Holy Spirit speak into our hearts. True intimacy with God requires us to slow down.",
+      "Our prayer life should not just be a list of requests but a posture of listening. The most powerful prayers often happen in silence — when we stop talking and let the Holy Spirit speak into our hearts. True intimacy with God requires us to slow down.",
     changSource: "Prayer Life Teachings",
     prayerPrompt:
       "Father, teach me to be still. Quiet the noise in my mind and the anxiety in my heart. In this moment, I choose to trust that You are God and You are working all things for my good.",
@@ -62,7 +62,7 @@ export const devotions: Devotion[] = [
     reflection:
       "Faith is not the absence of doubt — it is choosing to trust God despite the doubt. Abraham didn't have GPS coordinates when God told him to leave his homeland. Moses didn't have a strategic plan when he faced the Red Sea. Faith means taking the next step even when you can't see the entire staircase. God doesn't ask for perfect faith; He asks for obedient faith.",
     changInsight:
-      "Pastor Johnny Chang often reminds us that faith is like a muscle — it grows stronger through use. Every time we face a challenge and choose to trust God rather than our own understanding, our faith deepens. He teaches that the greatest breakthroughs in our spiritual lives come right after the greatest tests of faith.",
+      "Faith is like a muscle — it grows stronger through use. Every time we face a challenge and choose to trust God rather than our own understanding, our faith deepens. The greatest breakthroughs in our spiritual lives come right after the greatest tests of faith.",
     changSource: "Faith & Trust Series",
     prayerPrompt:
       "God, I confess that sometimes I rely on my own understanding more than on Your promises. Give me the courage to take steps of faith today, trusting that You will catch me and guide my path.",
@@ -80,7 +80,7 @@ export const devotions: Devotion[] = [
     reflection:
       "We live in a performance-driven culture that celebrates strength and hides weakness. But the Kingdom of God operates on a radically different economy. God's grace is not a backup plan for when we fail — it is the very foundation of our relationship with Him. When we are weak, His strength shines brightest. Today, don't hide your struggles; bring them to the cross.",
     changInsight:
-      "Johnny Chang teaches that understanding grace is the key to spiritual freedom. He explains that grace is not permission to sin but the power to overcome. When we truly grasp how much we've been forgiven, it transforms how we live, how we love, and how we extend grace to others.",
+      "Understanding grace is the key to spiritual freedom. Grace is not permission to sin but the power to overcome. When we truly grasp how much we've been forgiven, it transforms how we live, how we love, and how we extend grace to others.",
     changSource: "Understanding Grace Series",
     prayerPrompt:
       "Jesus, thank You for Your grace that meets me where I am. Help me to stop striving for perfection and instead rest in the sufficiency of Your grace. Use my weakness as a canvas for Your strength.",
@@ -98,7 +98,7 @@ export const devotions: Devotion[] = [
     reflection:
       "Worship is not a Sunday activity — it is a lifestyle. Every act of obedience, every moment of gratitude, every choice to honor God in the small things is an act of worship. God is not looking for perfect performances; He is seeking hearts that are genuinely turned toward Him. True worship flows from a heart that knows it is loved.",
     changInsight:
-      "Pastor Johnny Chang teaches that worship begins with surrender. He often says that before we can lift our hands to God, we must first lay down our own agendas. Worship is the overflow of a life that has been captivated by the goodness and greatness of God.",
+      "Worship begins with surrender. Before we can lift our hands to God, we must first lay down our own agendas. Worship is the overflow of a life that has been captivated by the goodness and greatness of God.",
     changSource: "Worship & Surrender Teachings",
     prayerPrompt:
       "Father, I want to be a true worshiper — not just in song but in every area of my life. Let my words, my work, and my relationships be an offering of worship to You today.",
@@ -116,7 +116,7 @@ export const devotions: Devotion[] = [
     reflection:
       "We were never meant to walk this journey alone. God designed us for community — for relationships where iron sharpens iron, where burdens are shared, and where we can be vulnerable without fear of judgment. Isolation is one of the enemy's greatest strategies. When you withdraw from fellowship, you make yourself an easier target. Stay connected, stay accountable, stay encouraged.",
     changInsight:
-      "Johnny Chang places a strong emphasis on biblical community. He teaches that accountability is not about policing each other but about loving each other enough to ask hard questions. True fellowship creates a safe space where we can be honest about our struggles and celebrate each other's victories.",
+      "Biblical community matters deeply. Accountability is not about policing each other but about loving each other enough to ask hard questions. True fellowship creates a safe space where we can be honest about our struggles and celebrate each other's victories.",
     changSource: "Biblical Community Series",
     prayerPrompt:
       "Lord, give me the courage to be vulnerable with other believers. Help me to prioritize fellowship and to be the kind of friend who encourages others toward You. Break any patterns of isolation in my life.",
@@ -134,7 +134,7 @@ export const devotions: Devotion[] = [
     reflection:
       "It's easy to get consumed by the urgencies of today — deadlines, bills, social media, comparison. But when we zoom out and see our lives from an eternal perspective, everything shifts. The things that cause us the most anxiety are often the things that matter the least in eternity. God is inviting you to invest in what lasts: relationships, character, faith, and love.",
     changInsight:
-      "Pastor Johnny Chang challenges believers to live with an 'eternal lens.' He teaches that when we understand the brevity of this life compared to eternity, our priorities naturally realign. He encourages us to ask daily: 'Will this matter in 10,000 years?' This question helps us focus on what truly counts.",
+      "We are challenged to live with an 'eternal lens.' When we understand the brevity of this life compared to eternity, our priorities naturally realign. Ask daily: 'Will this matter in 10,000 years?' This question helps us focus on what truly counts.",
     changSource: "Living with Purpose Series",
     prayerPrompt:
       "God, recalibrate my heart today. Help me to see beyond the temporary and to invest in the eternal. Give me wisdom to know the difference between what is urgent and what is truly important.",

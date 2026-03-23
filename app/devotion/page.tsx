@@ -226,28 +226,24 @@ export default function DevotionPage() {
           </div>
         </section>
 
-        {/* ========== Johnny Chang Insight ========== */}
+        {/* ========== Deeper Insight ========== */}
         <section className="fade-in-up fade-in-up-delay-3">
           <div className="bg-parchment rounded-2xl border border-gold/20 overflow-hidden shadow-sm relative">
             {/* Gold accent strip */}
             <div className="h-1 bg-gradient-to-r from-gold/40 via-gold to-gold/40" />
 
             <div className="p-6 md:p-8">
-              <div className="flex items-start gap-4 mb-5">
-                {/* Avatar */}
-                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-taupe to-espresso flex items-center justify-center flex-shrink-0">
-                  <span className="text-white text-sm font-serif font-bold">
-                    JC
-                  </span>
-                </div>
-                <div>
-                  <h3 className="font-serif text-base font-semibold text-espresso">
-                    Johnny Chang
-                  </h3>
-                  <p className="text-xs text-mocha font-sans">
-                    {devotion.changSource}
-                  </p>
-                </div>
+              <div className="flex items-center gap-2 mb-5">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="text-gold">
+                  <path d="M12 2L12 6M12 18L12 22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12L6 12M18 12L22 12M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93"/>
+                  <circle cx="12" cy="12" r="4" fill="currentColor" opacity="0.15"/>
+                </svg>
+                <span className="text-xs font-sans font-medium text-taupe tracking-[0.15em] uppercase">
+                  Going Deeper
+                </span>
+                <span className="text-[10px] text-mocha bg-sand/80 px-2 py-0.5 rounded-full ml-auto">
+                  {devotion.changSource}
+                </span>
               </div>
 
               <p className="text-[15px] md:text-base text-espresso/85 leading-[1.85] font-sans">
