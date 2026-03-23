@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #F5F0EB;
+  color: #2C2420;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #EDE8E3;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D4C5B5;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8B7355;
+}
+
+/* Bible verse text styling */
+.verse-text {
+  font-family: 'Playfair Display', Georgia, serif;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+}
+
+/* Gradient overlay for hero sections */
+.hero-gradient {
+  background: linear-gradient(
+    135deg,
+    #2C2420 0%,
+    #3D3530 25%,
+    #5C4A35 50%,
+    #8B7355 75%,
+    #C9A96E 100%
+  );
+}
+
+.hero-gradient-light {
+  background: linear-gradient(
+    135deg,
+    #EDE8E3 0%,
+    #D4C5B5 50%,
+    #C9A96E 100%
+  );
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(44, 36, 32, 0.12);
+}
+
+/* Streak fire animation */
+@keyframes fireGlow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.2); }
+}
+
+.fire-glow {
+  animation: fireGlow 2s ease-in-out infinite;
+}
+
+/* Fade in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.fade-in-up-delay-1 { animation-delay: 0.1s; opacity: 0; }
+.fade-in-up-delay-2 { animation-delay: 0.2s; opacity: 0; }
+.fade-in-up-delay-3 { animation-delay: 0.3s; opacity: 0; }
+.fade-in-up-delay-4 { animation-delay: 0.4s; opacity: 0; }
+
+/* Tab active indicator */
+.tab-active {
+  position: relative;
+}
+
+.tab-active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #8B7355;
+}
+
+/* Reading progress bar */
+.reading-progress {
+  background: linear-gradient(90deg, #C9A96E, #8B7355);
+  height: 3px;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
